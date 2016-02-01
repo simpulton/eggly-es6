@@ -4,10 +4,7 @@ class BookmarksController {
 
     let bookmarksListCtrl = this;
 
-    CategoriesModel.setCurrentCategory($stateParams.category)
-      .then(() => {
-        bookmarksListCtrl.currentCategoryName = CategoriesModel.getCurrentCategoryName();
-      });
+    CategoriesModel.setCurrentCategory($stateParams.category);
 
     BookmarksModel.getBookmarks()
       .then((bookmarks) => {
@@ -15,6 +12,7 @@ class BookmarksController {
       });
 
     bookmarksListCtrl.getCurrentCategory = CategoriesModel.getCurrentCategory.bind(CategoriesModel);
+    bookmarksListCtrl.getCurrentCategoryName = CategoriesModel.getCurrentCategoryName.bind(CategoriesModel);
     bookmarksListCtrl.deleteBookmark = BookmarksModel.deleteBookmark;
   }
 }
