@@ -1,5 +1,5 @@
 class BookmarksController {
-  constructor(CategoriesModel, BookmarksModel, $stateParams, $scope) {
+  constructor(CategoriesModel, BookmarksModel, $stateParams) {
     'ngInject';
 
     let bookmarksListCtrl = this;
