@@ -2,9 +2,8 @@
   <img class="logo" src="assets/img/eggly-logo.png">
 </a>
 <ul class="nav nav-sidebar">
-  <li ng-repeat="category in categoriesListCtrl.categories" ng-class="{'active':isCurrentCategory(category)}">
-    <a ui-sref="eggly.categories.bookmarks({category:category.name})">
-      {{category.name}}
-    </a>
-  </li>
+  <category-item
+    name="category.name"
+    ng-repeat="category in categoriesListCtrl.categories">
+  </category-item>
 </ul>
