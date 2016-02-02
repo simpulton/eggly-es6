@@ -1,6 +1,5 @@
 import 'bootstrap-css-only';
 import 'normalize.css';
-import '../assets/css/animations.css';
 
 import angular from 'angular';
 import angularAnimate from 'angular-animate';
