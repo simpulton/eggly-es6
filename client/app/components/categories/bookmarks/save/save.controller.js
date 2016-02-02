@@ -1,4 +1,4 @@
-import {clone, } from 'lodash';
+import {clone} from 'lodash';
 
 class SaveController {
   constructor(BookmarksModel, $stateParams, $state) {
