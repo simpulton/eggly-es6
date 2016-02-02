@@ -1,7 +1,7 @@
 import CategoriesModel from './categories-model';
 
 describe('CategoriesModel', () => {
-  let service, $httpBackend
+  let service, $httpBackend;
 
   beforeEach(inject(($http, $q, _$httpBackend_) => {
     $httpBackend = _$httpBackend_;

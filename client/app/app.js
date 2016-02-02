@@ -20,7 +20,6 @@ angular.module('app', [
   'ngInject';
 
   $stateProvider
-  //abstract state serves as a PLACEHOLDER or NAMESPACE for application states
     .state('eggly', {
     url: '',
     abstract: true

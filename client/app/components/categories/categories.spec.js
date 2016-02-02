@@ -4,7 +4,7 @@ import CategoriesComponent from './categories.component';
 import CategoriesTemplate from './categories.html';
 
 describe('Categories', () => {
-  let $rootScope, makeController, CategoriesModel;
+  let makeController, CategoriesModel;
 
   beforeEach(() => {
     window.module(($provide) => {
@@ -42,18 +42,18 @@ describe('Categories', () => {
   });
 
   describe('Component', () => {
-      let component = CategoriesComponent;
+    let component = CategoriesComponent;
 
-      it('includes the intended template',() => {
-        expect(component.template).toEqual(CategoriesTemplate);
-      });
+    it('includes the intended template',() => {
+      expect(component.template).toEqual(CategoriesTemplate);
+    });
 
-      it('uses the correct `controllerAs` label', () => {
-        expect(component.controllerAs).toBe('categoriesListCtrl');
-      });
+    it('uses the correct `controllerAs` label', () => {
+      expect(component.controllerAs).toBe('categoriesListCtrl');
+    });
 
-      it('invokes the right controller', () => {
-        expect(component.controller).toEqual(CategoriesController);
-      });
+    it('invokes the right controller', () => {
+      expect(component.controller).toEqual(CategoriesController);
+    });
   });
 });

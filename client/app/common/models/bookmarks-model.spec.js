@@ -1,7 +1,7 @@
 import BookmarksModel from './bookmarks-model';
 
 describe('BookmarksModel', () => {
-  let service, $httpBackend
+  let service, $httpBackend;
 
   beforeEach(inject(($http, $q, _$httpBackend_) => {
     $httpBackend = _$httpBackend_;

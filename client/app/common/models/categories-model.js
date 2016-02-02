@@ -1,3 +1,5 @@
+import {find} from 'lodash';
+
 class CategoriesModel {
   constructor($http, $q) {
     'ngInject';
@@ -21,29 +23,29 @@ class CategoriesModel {
 
   getCategories() {
     return (this.categories) ? this.$q.when(this.categories) : this.$http.get(this.URLS.FETCH).then(this.cacheCategories.bind(this));
-  };
+  }
 
   setCurrentCategory(category) {
     let service = this;
     return service.getCategoryByName(category).then((category) => {
       service.currentCategory = category;
     });
-  };
+  }
 
   getCurrentCategory() {
     return this.currentCategory;
-  };
+  }
 
   getCurrentCategoryName() {
     return this.currentCategory ? this.currentCategory.name : '';
-  };
+  }
 
   getCategoryByName(categoryName) {
     let deferred = this.$q.defer(),
         service = this;
 
     let findCategory = () => {
-      return _.find(service.categories, (c) => {
+      return find(service.categories, (c) => {
         return c.name == categoryName;
       });
     }
@@ -58,8 +60,7 @@ class CategoriesModel {
     }
 
     return deferred.promise;
-  };
-
+  }
 }
 
 export default CategoriesModel;

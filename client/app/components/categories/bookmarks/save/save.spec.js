@@ -4,7 +4,7 @@ import SaveComponent from './save.component';
 import SaveTemplate from './save.html';
 
 describe('Save', () => {
-  let $rootScope, makeController;
+  let makeController;
 
   beforeEach(() => {
     window.module('ui.router');
@@ -15,7 +15,7 @@ describe('Save', () => {
       });
     });
   });
-  
+
   beforeEach(inject((BookmarksModel, $stateParams, $state) => {
     makeController = () => {
       return new SaveController(BookmarksModel, $stateParams, $state);
@@ -46,18 +46,18 @@ describe('Save', () => {
   });
 
   describe('Component', () => {
-      let component = SaveComponent;
+    let component = SaveComponent;
 
-      it('includes the intended template',() => {
-        expect(component.template).toEqual(SaveTemplate);
-      });
+    it('includes the intended template',() => {
+      expect(component.template).toEqual(SaveTemplate);
+    });
 
-      it('uses correct `controllerAs` label', () => {
-        expect(component.controllerAs).toBe('bookmarkSaveCtrl');
-      });
+    it('uses correct `controllerAs` label', () => {
+      expect(component.controllerAs).toBe('bookmarkSaveCtrl');
+    });
 
-      it('invokes the right controller', () => {
-        expect(component.controller).toEqual(SaveController);
-      });
+    it('invokes the right controller', () => {
+      expect(component.controller).toEqual(SaveController);
+    });
   });
 });

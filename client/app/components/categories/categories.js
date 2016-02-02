@@ -15,12 +15,9 @@ let categoriesModule = angular.module('categories', [
     .state('eggly.categories', {
       url: '/',
       views: {
-        //target the ui-view named 'categories' in ROOT state (eggly)
         'categories@': {
           template: `<categories></categories>`
         },
-        //target the ui-view named 'bookmarks' in ROOT state (eggly)
-        //to show all bookmarks for all categories
         'bookmarks@': {
           template: `<bookmarks></bookmarks>`
         }

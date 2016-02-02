@@ -3,7 +3,7 @@ import CategoryItemComponent from './categoryItem.component';
 import CategoryItemTemplate from './categoryItem.html';
 
 describe('CategoryItem', () => {
-  let $rootScope, makeController;
+  let makeController;
 
   describe('Module', () => {
     it('is named correctly', () => {

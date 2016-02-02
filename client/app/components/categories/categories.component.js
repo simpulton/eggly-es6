@@ -4,7 +4,6 @@ import './categories.styl';
 
 let categoriesComponent = {
   restrict: 'E',
-  bindings: {},
   template,
   controller,
   controllerAs: 'categoriesListCtrl'

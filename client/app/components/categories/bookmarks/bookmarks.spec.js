@@ -4,7 +4,7 @@ import BookmarksComponent from './bookmarks.component';
 import BookmarksTemplate from './bookmarks.html';
 
 describe('Bookmarks', () => {
-  let $rootScope, makeController, $stateParams, CategoriesModel, BookmarksModel;
+  let makeController, $stateParams, CategoriesModel, BookmarksModel;
 
   beforeEach(() => {
     window.module('ui.router');

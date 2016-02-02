@@ -3,7 +3,6 @@ import controller from './save.controller';
 
 let saveComponent = {
   restrict: 'E',
-  bindings: {},
   template,
   controller,
   controllerAs: 'bookmarkSaveCtrl'

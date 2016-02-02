@@ -4,7 +4,6 @@ import './bookmarks.styl';
 
 let bookmarksComponent = {
   restrict: 'E',
-  bindings: {},
   template,
   controller,
   controllerAs: 'bookmarksListCtrl'

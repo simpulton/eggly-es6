@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import {clone, } from 'lodash';
 
 class SaveController {
   constructor(BookmarksModel, $stateParams, $state) {
@@ -29,7 +29,7 @@ class SaveController {
       .then((response) => {
         bookmarkSaveCtrl.bookmark = response;
         if (bookmarkSaveCtrl.bookmark) {
-          bookmarkSaveCtrl.editedBookmark = _.clone(bookmarkSaveCtrl.bookmark);
+          bookmarkSaveCtrl.editedBookmark = clone(bookmarkSaveCtrl.bookmark);
         }
       });
   }
