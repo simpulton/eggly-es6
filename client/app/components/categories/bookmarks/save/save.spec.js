@@ -6,48 +6,58 @@ import SaveTemplate from './save.html';
 describe('Save', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(SaveModule.name));
-  beforeEach(inject((_$rootScope_) => {
-    $rootScope = _$rootScope_;
+  beforeEach(() => {
+    window.module('ui.router');
+    window.module(($provide) => {
+      $provide.value('BookmarksModel', {
+        getBookmarks: () => {},
+        getBookmarkById: () => { return { then: () => {} } }
+      });
+    });
+  });
+  
+  beforeEach(inject((BookmarksModel, $stateParams, $state) => {
     makeController = () => {
-      return new SaveController();
+      return new SaveController(BookmarksModel, $stateParams, $state);
     };
   }));
 
   describe('Module', () => {
-    // top-level specs: i.e., routes, injection, naming
+    it('is named correctly', () => {
+      expect(SaveModule.name).toBe('save');
+    });
   });
 
   describe('Controller', () => {
-    // controller specs
-    it('has a name property [REMOVE]', () => { // erase if removing this.name from the controller
+    it('calls #initEditedBookmark immediately', () => {
+      spyOn(SaveController.prototype, 'initEditedBookmark').and.callThrough();
+
       let controller = makeController();
-      expect(controller).to.have.property('name');
+
+      expect(controller.initEditedBookmark).toHaveBeenCalled();
     });
   });
 
   describe('Template', () => {
-    // template specs
-    // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    it('has name in template [REMOVE]', () => {
-      expect(SaveTemplate).to.match(/{{\s?vm\.name\s?}}/g);
+    it('binds to $stateParams.category and the bookmark title', () => {
+      expect(SaveTemplate).toContain('{{bookmarkSaveCtrl.$stateParams.category}}');
+      expect(SaveTemplate).toContain('{{bookmarkSaveCtrl.bookmark.title}}');
     });
   });
 
   describe('Component', () => {
-      // component/directive specs
       let component = SaveComponent;
 
       it('includes the intended template',() => {
-        expect(component.template).to.equal(SaveTemplate);
+        expect(component.template).toEqual(SaveTemplate);
       });
 
-      it('uses `controllerAs` syntax', () => {
-        expect(component).to.have.property('controllerAs');
+      it('uses correct `controllerAs` label', () => {
+        expect(component.controllerAs).toBe('bookmarkSaveCtrl');
       });
 
       it('invokes the right controller', () => {
-        expect(component.controller).to.equal(SaveController);
+        expect(component.controller).toEqual(SaveController);
       });
   });
 });

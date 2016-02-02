@@ -4,50 +4,56 @@ import CategoriesComponent from './categories.component';
 import CategoriesTemplate from './categories.html';
 
 describe('Categories', () => {
-  let $rootScope, makeController;
+  let $rootScope, makeController, CategoriesModel;
 
-  beforeEach(window.module(CategoriesModule.name));
-  beforeEach(inject((_$rootScope_) => {
-    $rootScope = _$rootScope_;
+  beforeEach(() => {
+    window.module(($provide) => {
+      $provide.value('CategoriesModel', {
+        getCategories: () => { return { then: () => {} } }
+      });
+    });
+  });
+
+  beforeEach(inject((_CategoriesModel_) => {
+    CategoriesModel = _CategoriesModel_;
     makeController = () => {
-      return new CategoriesController();
+      return new CategoriesController(CategoriesModel);
     };
   }));
 
   describe('Module', () => {
-    // top-level specs: i.e., routes, injection, naming
+    it('is named correctly', () => {
+      expect(CategoriesModule.name).toEqual('categories');
+    });
   });
 
   describe('Controller', () => {
-    // controller specs
-    it('has a name property [REMOVE]', () => { // erase if removing this.name from the controller
+    it('calls CategoriesModel.getCategories immediately', () => {
+      spyOn(CategoriesModel, 'getCategories').and.callThrough();
       let controller = makeController();
-      expect(controller).to.have.property('name');
+      expect(CategoriesModel.getCategories).toHaveBeenCalled();
     });
   });
 
   describe('Template', () => {
-    // template specs
-    // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    it('has name in template [REMOVE]', () => {
-      expect(CategoriesTemplate).to.match(/{{\s?vm\.name\s?}}/g);
+    it('includes the `category-item` directive', () => {
+      expect(CategoriesTemplate).toContain('<category-item');
     });
   });
 
   describe('Component', () => {
-      // component/directive specs
       let component = CategoriesComponent;
 
       it('includes the intended template',() => {
-        expect(component.template).to.equal(CategoriesTemplate);
+        expect(component.template).toEqual(CategoriesTemplate);
       });
 
-      it('uses `controllerAs` syntax', () => {
-        expect(component).to.have.property('controllerAs');
+      it('uses the correct `controllerAs` label', () => {
+        expect(component.controllerAs).toBe('categoriesListCtrl');
       });
 
       it('invokes the right controller', () => {
-        expect(component.controller).to.equal(CategoriesController);
+        expect(component.controller).toEqual(CategoriesController);
       });
   });
 });

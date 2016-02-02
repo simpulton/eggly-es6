@@ -1,5 +1,4 @@
 import template from './categoryItem.html';
-import controller from './categoryItem.controller';
 import './categoryItem.styl';
 
 let categoryItemComponent = {
@@ -8,7 +7,6 @@ let categoryItemComponent = {
     name: '='
   },
   template,
-  controller,
   controllerAs: 'categoryItemCtrl'
 };
 

@@ -4,23 +4,21 @@ class SaveController {
   constructor(BookmarksModel, $stateParams, $state) {
     'ngInject';
 
-    this.editedBookmark = {
-      id: null,
-      title: '',
-      url: '',
-      category: null
-    }
-
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.BookmarksModel = BookmarksModel;
 
-    this.initBookmarks();
     this.initEditedBookmark();
+    this.initBookmarks();
   }
 
   initEditedBookmark() {
-    this.editedBookmark.category = this.$stateParams.category;
+    this.editedBookmark = {
+      id: null,
+      title: '',
+      url: '',
+      category: this.$stateParams.category
+    };
   }
 
   initBookmarks() {

@@ -1,5 +1,5 @@
 class CategoriesModel {
-  constructor($http, $q, $rootScope) {
+  constructor($http, $q) {
     'ngInject';
 
     this.$http = $http;

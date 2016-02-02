@@ -4,50 +4,80 @@ import BookmarksComponent from './bookmarks.component';
 import BookmarksTemplate from './bookmarks.html';
 
 describe('Bookmarks', () => {
-  let $rootScope, makeController;
+  let $rootScope, makeController, $stateParams, CategoriesModel, BookmarksModel;
 
-  beforeEach(window.module(BookmarksModule.name));
-  beforeEach(inject((_$rootScope_) => {
-    $rootScope = _$rootScope_;
+  beforeEach(() => {
+    window.module('ui.router');
+    window.module(($provide) => {
+      $provide.value('CategoriesModel', {
+        setCurrentCategory: () => {},
+        getCurrentCategory: () => {},
+        getCurrentCategoryName: () => {}
+      });
+
+      $provide.value('BookmarksModel', {
+        getBookmarks: () => { return { then: () => {} } }
+      });
+    });
+  });
+
+  beforeEach(inject((_CategoriesModel_, _BookmarksModel_, _$stateParams_) => {
+    $stateParams = _$stateParams_;
+    CategoriesModel = _CategoriesModel_;
+    BookmarksModel = _BookmarksModel_;
+
     makeController = () => {
-      return new BookmarksController();
+      return new BookmarksController(CategoriesModel, BookmarksModel, $stateParams);
     };
   }));
 
   describe('Module', () => {
-    // top-level specs: i.e., routes, injection, naming
+    it('is named correctly', () => {
+      expect(BookmarksModule.name).toBe('bookmarks');
+    });
   });
 
   describe('Controller', () => {
-    // controller specs
-    it('has a name property [REMOVE]', () => { // erase if removing this.name from the controller
+    it('sets the current category immediately', () => {
+      $stateParams.category = 'Development';
+      spyOn(CategoriesModel, 'setCurrentCategory');
       let controller = makeController();
-      expect(controller).to.have.property('name');
+
+      expect(CategoriesModel.setCurrentCategory).toHaveBeenCalledWith($stateParams.category);
+    });
+
+    it('gets all bookmarks immediately', () => {
+      spyOn(BookmarksModel, 'getBookmarks').and.returnValue({
+        then: (callback) => { callback('bookmarks') }
+      });
+
+      let controller = makeController();
+
+      expect(BookmarksModel.getBookmarks).toHaveBeenCalled();
+      expect(controller.bookmarks).toBe('bookmarks');
     });
   });
 
   describe('Template', () => {
-    // template specs
-    // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    it('has name in template [REMOVE]', () => {
-      expect(BookmarksTemplate).to.match(/{{\s?vm\.name\s?}}/g);
+    it('contains a binding to the url and title', () => {
+      expect(BookmarksTemplate).toContain('{{bookmark.url}}');
+      expect(BookmarksTemplate).toContain('{{bookmark.title}}');
     });
   });
 
   describe('Component', () => {
-      // component/directive specs
       let component = BookmarksComponent;
 
       it('includes the intended template',() => {
-        expect(component.template).to.equal(BookmarksTemplate);
+        expect(component.template).toEqual(BookmarksTemplate);
       });
 
-      it('uses `controllerAs` syntax', () => {
-        expect(component).to.have.property('controllerAs');
+      it('uses the correct `controllerAs` label', () => {
+        expect(component.controllerAs).toBe('bookmarksListCtrl');
       });
 
       it('invokes the right controller', () => {
-        expect(component.controller).to.equal(BookmarksController);
+        expect(component.controller).toEqual(BookmarksController);
       });
   });
 });
