@@ -12,12 +12,6 @@ npm i
 npm start
 ```
 
-## Testing
-To run the tests, run `npm test` or `karma start`.
-
-Be sure to define your `*.spec.js` files within their corresponding component directory. You must name the spec file like so, `[name].spec.js`. If you don't want to use the `.spec.js` suffix, you must change the `regex` in `spec.bundle.js` to look for whatever file(s) you want.
-`Jasmine` is the testing suite and assertion library used for this project. If you would like to change this, see `karma.conf.js`.
-
 ## Generating Components
 There is a convenient Gulp task called `component` to generate components. To do so, simply run `gulp component --name componentName`.
 
