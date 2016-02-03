@@ -2,18 +2,23 @@ class BookmarksController {
   constructor(CategoriesModel, BookmarksModel, $stateParams) {
     'ngInject';
 
-    let bookmarksListCtrl = this;
-
     CategoriesModel.setCurrentCategory($stateParams.category);
 
     BookmarksModel.getBookmarks()
       .then((bookmarks) => {
-        bookmarksListCtrl.bookmarks = bookmarks;
+        this.bookmarks = bookmarks;
       });
 
-    bookmarksListCtrl.getCurrentCategory = CategoriesModel.getCurrentCategory.bind(CategoriesModel);
-    bookmarksListCtrl.getCurrentCategoryName = CategoriesModel.getCurrentCategoryName.bind(CategoriesModel);
-    bookmarksListCtrl.deleteBookmark = BookmarksModel.deleteBookmark;
+    this.CategoriesModel = CategoriesModel;
+    this.BookmarksModel = BookmarksModel;
+
+    this.initControllerMethods();
+  }
+
+  initControllerMethods() {
+    this.getCurrentCategory = this.CategoriesModel.getCurrentCategory.bind(this.CategoriesModel);
+    this.getCurrentCategoryName = this.CategoriesModel.getCurrentCategoryName.bind(this.CategoriesModel);
+    this.deleteBookmark = this.BookmarksModel.deleteBookmark;
   }
 }
 
