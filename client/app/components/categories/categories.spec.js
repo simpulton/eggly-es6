@@ -37,7 +37,7 @@ describe('Categories', () => {
 
   describe('Template', () => {
     it('includes the `category-item` directive', () => {
-      expect(CategoriesTemplate).toContain('<category-item');
+      expect(CategoriesTemplate).toContain('category-item');
     });
   });
 
