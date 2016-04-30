@@ -2,7 +2,7 @@ import template from './categoryItem.html';
 import './categoryItem.styl';
 
 let categoryItemComponent = {
-  restrict: 'A',
+  restrict: 'E',
   bindings: {
     name: '='
   },
