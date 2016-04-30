@@ -6,7 +6,6 @@
   "dependencies": {
     "angular": "^1.4.9",
     "angular-animate": "^1.4.9",
-    "angular-component": "0.0.3",
     "angular-ui-router": "^0.2.15",
     "bootstrap-css-only": "^3.3.6",
     "lodash": "^3.8.0",
