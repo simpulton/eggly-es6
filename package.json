@@ -46,6 +46,7 @@
     "yargs": "4.7.1"
   },
   "scripts": {
+    "start": "gulp",
     "test": "karma start"
   },
   "keywords": [
