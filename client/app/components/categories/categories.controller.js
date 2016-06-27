@@ -2,11 +2,13 @@ class CategoriesController {
   constructor(CategoriesModel) {
     'ngInject';
 
-    let categoriesListCtrl = this;
+    this.CategoriesModel = CategoriesModel;
+  }
 
-    CategoriesModel.getCategories()
+  $onInit() {
+    this.CategoriesModel.getCategories()
       .then((result) => {
-        categoriesListCtrl.categories = result;
+        this.categories = result;
       });
   }
 }

@@ -8,7 +8,7 @@ describe('Bookmarks', () => {
 
   beforeEach(() => {
     window.module('ui.router');
-    window.module.('bookmarks');
+    window.module('bookmarks');
 
     window.module(($provide) => {
       $provide.value('CategoriesModel', {

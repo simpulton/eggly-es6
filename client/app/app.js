@@ -21,10 +21,10 @@ const config = ($stateProvider, $urlRouterProvider) => {
 }
 
 angular.module('app', [
-  uiRouter,
-  angularAnimate,
-  Components.name,
-  Common.name
-])
+    uiRouter,
+    angularAnimate,
+    Components.name,
+    Common.name
+  ])
   .config(config)
   .component('app', AppComponent);

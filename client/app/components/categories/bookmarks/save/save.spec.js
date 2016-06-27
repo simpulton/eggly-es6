@@ -4,10 +4,12 @@ import SaveComponent from './save.component';
 import SaveTemplate from './save.html';
 
 describe('Save', () => {
-  let makeController;
+  let component, $componentController, $stateParams, $state, BookmarksModel;
 
   beforeEach(() => {
     window.module('ui.router');
+    window.module('save');
+
     window.module(($provide) => {
       $provide.value('BookmarksModel', {
         getBookmarks: () => {},
@@ -16,10 +18,11 @@ describe('Save', () => {
     });
   });
 
-  beforeEach(inject((BookmarksModel, $stateParams, $state) => {
-    makeController = () => {
-      return new SaveController(BookmarksModel, $stateParams, $state);
-    };
+  beforeEach(inject((_$componentController_, _$stateParams_, _$state_, _BookmarksModel_) => {
+    $componentController = _$componentController_;
+    $stateParams = _$stateParams_;
+    $state = _$state_;
+    BookmarksModel = _BookmarksModel_;
   }));
 
   describe('Module', () => {
@@ -32,9 +35,14 @@ describe('Save', () => {
     it('calls #initEditedBookmark immediately', () => {
       spyOn(SaveController.prototype, 'initEditedBookmark').and.callThrough();
 
-      let controller = makeController();
+      component = $componentController('save', {
+        BookmarksModel: BookmarksModel,
+        $stateParams: $stateParams,
+        $state: $state
+      });
+      component.$onInit();
 
-      expect(controller.initEditedBookmark).toHaveBeenCalled();
+      expect(component.initEditedBookmark).toHaveBeenCalled();
     });
   });
 

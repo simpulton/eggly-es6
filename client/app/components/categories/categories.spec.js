@@ -4,21 +4,25 @@ import CategoriesComponent from './categories.component';
 import CategoriesTemplate from './categories.html';
 
 describe('Categories', () => {
-  let makeController, CategoriesModel;
+  let component, $componentController, CategoriesModel;
 
   beforeEach(() => {
+    window.module('categories');
+
     window.module(($provide) => {
       $provide.value('CategoriesModel', {
-        getCategories: () => { return { then: () => {} } }
+        getCategories: () => {
+          return {
+            then: () => {}
+          }
+        }
       });
     });
   });
 
-  beforeEach(inject((_CategoriesModel_) => {
+  beforeEach(inject((_$componentController_, _CategoriesModel_) => {
     CategoriesModel = _CategoriesModel_;
-    makeController = () => {
-      return new CategoriesController(CategoriesModel);
-    };
+    $componentController = _$componentController_;
   }));
 
   describe('Module', () => {
@@ -30,7 +34,12 @@ describe('Categories', () => {
   describe('Controller', () => {
     it('calls CategoriesModel.getCategories immediately', () => {
       spyOn(CategoriesModel, 'getCategories').and.callThrough();
-      let controller = makeController();
+
+      component = $componentController('categories', {
+        CategoriesModel: CategoriesModel
+      });
+      component.$onInit();
+
       expect(CategoriesModel.getCategories).toHaveBeenCalled();
     });
   });

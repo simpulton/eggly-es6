@@ -3,7 +3,7 @@ import './categoryItem.styl';
 
 let categoryItemComponent = {
   bindings: {
-    name: '='
+    name: '<'
   },
   template,
   controllerAs: 'categoryItemCtrl'

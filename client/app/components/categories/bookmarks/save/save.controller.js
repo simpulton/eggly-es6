@@ -7,7 +7,9 @@ class SaveController {
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.BookmarksModel = BookmarksModel;
+  }
 
+  $onInit() {
     this.initEditedBookmark();
     this.initBookmarks();
   }

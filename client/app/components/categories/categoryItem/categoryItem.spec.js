@@ -27,7 +27,7 @@ describe('CategoryItem', () => {
     });
 
     it('binds a `name` property', () => {
-      expect(component.bindings.name).toBe('=');
+      expect(component.bindings.name).toBe('<');
     });
   });
 });
