@@ -1,7 +1,6 @@
 'use strict';
 
 import gulp     from 'gulp';
-import webpack  from 'webpack-stream';
 import path     from 'path';
 import sync     from 'run-sequence';
 import serve    from 'browser-sync';
@@ -37,7 +36,7 @@ gulp.task('serve', () => {
 
 gulp.task('watch', () => {
   let allPaths = [].concat([paths.js], paths.html, [paths.styl]);
-  gulp.watch(allPaths, ['webpack', reload]);
+  gulp.watch(allPaths, [reload]);
 });
 
 gulp.task('default', (done) => {
