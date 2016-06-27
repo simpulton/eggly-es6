@@ -4,10 +4,12 @@ import BookmarksComponent from './bookmarks.component';
 import BookmarksTemplate from './bookmarks.html';
 
 describe('Bookmarks', () => {
-  let makeController, $stateParams, CategoriesModel, BookmarksModel;
+  let component, $componentController, $stateParams, CategoriesModel, BookmarksModel;
 
   beforeEach(() => {
     window.module('ui.router');
+    window.module.('bookmarks');
+
     window.module(($provide) => {
       $provide.value('CategoriesModel', {
         setCurrentCategory: () => {},
@@ -16,19 +18,20 @@ describe('Bookmarks', () => {
       });
 
       $provide.value('BookmarksModel', {
-        getBookmarks: () => { return { then: () => {} } }
+        getBookmarks: () => {
+          return {
+            then: () => {}
+          }
+        }
       });
     });
   });
 
-  beforeEach(inject((_CategoriesModel_, _BookmarksModel_, _$stateParams_) => {
+  beforeEach(inject((_$componentController_, _$stateParams_, _CategoriesModel_, _BookmarksModel_) => {
+    $componentController = _$componentController_;
     $stateParams = _$stateParams_;
     CategoriesModel = _CategoriesModel_;
     BookmarksModel = _BookmarksModel_;
-
-    makeController = () => {
-      return new BookmarksController(CategoriesModel, BookmarksModel, $stateParams);
-    };
   }));
 
   describe('Module', () => {
@@ -41,20 +44,33 @@ describe('Bookmarks', () => {
     it('sets the current category immediately', () => {
       $stateParams.category = 'Development';
       spyOn(CategoriesModel, 'setCurrentCategory');
-      let controller = makeController();
+
+      component = $componentController('bookmarks', {
+        CategoriesModel: CategoriesModel,
+        BookmarksModel: BookmarksModel,
+        $stateParams: $stateParams
+      });
+      component.$onInit();
 
       expect(CategoriesModel.setCurrentCategory).toHaveBeenCalledWith($stateParams.category);
     });
 
     it('gets all bookmarks immediately', () => {
       spyOn(BookmarksModel, 'getBookmarks').and.returnValue({
-        then: (callback) => { callback('bookmarks') }
+        then: (callback) => {
+          callback('bookmarks')
+        }
       });
 
-      let controller = makeController();
+      component = $componentController('bookmarks', {
+        CategoriesModel: CategoriesModel,
+        BookmarksModel: BookmarksModel,
+        $stateParams: $stateParams
+      });
+      component.$onInit();
 
       expect(BookmarksModel.getBookmarks).toHaveBeenCalled();
-      expect(controller.bookmarks).toBe('bookmarks');
+      expect(component.bookmarks).toBe('bookmarks');
     });
   });
 
@@ -66,18 +82,18 @@ describe('Bookmarks', () => {
   });
 
   describe('Component', () => {
-      let component = BookmarksComponent;
+    let component = BookmarksComponent;
 
-      it('includes the intended template',() => {
-        expect(component.template).toEqual(BookmarksTemplate);
-      });
+    it('includes the intended template', () => {
+      expect(component.template).toEqual(BookmarksTemplate);
+    });
 
-      it('uses the correct `controllerAs` label', () => {
-        expect(component.controllerAs).toBe('bookmarksListCtrl');
-      });
+    it('uses the correct `controllerAs` label', () => {
+      expect(component.controllerAs).toBe('bookmarksListCtrl');
+    });
 
-      it('invokes the right controller', () => {
-        expect(component.controller).toEqual(BookmarksController);
-      });
+    it('invokes the right controller', () => {
+      expect(component.controller).toEqual(BookmarksController);
+    });
   });
 });
