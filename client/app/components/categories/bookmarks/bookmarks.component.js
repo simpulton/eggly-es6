@@ -3,7 +3,6 @@ import controller from './bookmarks.controller';
 import './bookmarks.styl';
 
 let bookmarksComponent = {
-  restrict: 'E',
   template,
   controller,
   controllerAs: 'bookmarksListCtrl'

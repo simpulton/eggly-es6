@@ -8,23 +8,23 @@ import Components from './components/components';
 import AppComponent from './app.component';
 import Common from './common/common';
 
+const config = ($stateProvider, $urlRouterProvider) => {
+  'ngInject';
+
+  $stateProvider
+    .state('eggly', {
+      url: '',
+      abstract: true
+    });
+
+  $urlRouterProvider.otherwise('/');
+}
+
 angular.module('app', [
   uiRouter,
   angularAnimate,
   Components.name,
   Common.name
 ])
-
-.config(($stateProvider, $urlRouterProvider) => {
-  'ngInject';
-
-  $stateProvider
-    .state('eggly', {
-    url: '',
-    abstract: true
-  });
-
-  $urlRouterProvider.otherwise('/');
-})
-
-.component('app', AppComponent);
+  .config(config)
+  .component('app', AppComponent);

@@ -4,13 +4,7 @@ import categoriesComponent from './categories.component';
 import CategoryItemModule from './categoryItem/categoryItem';
 import BookmarksModule from './bookmarks/bookmarks';
 
-let categoriesModule = angular.module('categories', [
-  uiRouter,
-  CategoryItemModule.name,
-  BookmarksModule.name
-])
-
-.config(($stateProvider) => {
+const config = ($stateProvider) => {
   'ngInject';
 
   $stateProvider
@@ -25,8 +19,14 @@ let categoriesModule = angular.module('categories', [
         }
       }
     });
-})
+};
 
-.component('categories', categoriesComponent);
+let categoriesModule = angular.module('categories', [
+    uiRouter,
+    CategoryItemModule.name,
+    BookmarksModule.name
+  ])
+  .config(config)
+  .component('categories', categoriesComponent);
 
 export default categoriesModule;

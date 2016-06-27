@@ -3,8 +3,6 @@ import CategoryItemComponent from './categoryItem.component';
 import CategoryItemTemplate from './categoryItem.html';
 
 describe('CategoryItem', () => {
-  let makeController;
-
   describe('Module', () => {
     it('is named correctly', () => {
       expect(CategoryItemModule.name).toBe('categoryItem');

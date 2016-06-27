@@ -3,12 +3,7 @@ import uiRouter from 'angular-ui-router';
 import bookmarksComponent from './bookmarks.component';
 import SaveModule from './save/save';
 
-let bookmarksModule = angular.module('bookmarks', [
-  uiRouter,
-  SaveModule.name
-])
-
-.config(($stateProvider) => {
+const config = ($stateProvider) => {
   'ngInject';
 
   $stateProvider
@@ -20,8 +15,13 @@ let bookmarksModule = angular.module('bookmarks', [
         }
       }
     });
-})
+};
 
-.component('bookmarks', bookmarksComponent);
+let bookmarksModule = angular.module('bookmarks', [
+    uiRouter,
+    SaveModule.name
+  ])
+  .config(config)
+  .component('bookmarks', bookmarksComponent);
 
 export default bookmarksModule;

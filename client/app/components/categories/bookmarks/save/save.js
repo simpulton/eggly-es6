@@ -2,11 +2,7 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import saveComponent from './save.component';
 
-let saveModule = angular.module('save', [
-  uiRouter
-])
-
-.config(($stateProvider) => {
+const config = ($stateProvider) => {
   'ngInject';
   $stateProvider
     .state('eggly.categories.bookmarks.create', {
@@ -17,8 +13,12 @@ let saveModule = angular.module('save', [
       url: '/bookmarks/:bookmarkId/edit',
       template: '<save></save>'
     });
-})
+};
 
-.component('save', saveComponent);
+let saveModule = angular.module('save', [
+    uiRouter
+  ])
+  .config(config)
+  .component('save', saveComponent);
 
 export default saveModule;
