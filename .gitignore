@@ -1,8 +1,9 @@
+node_modules
 .DS_Store
 .tmp
 .git
-node_modules
 .settings
 *.log
+.idea/*
 client/bundle.js
 client/bundle.js.map

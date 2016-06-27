@@ -7,9 +7,7 @@ import sync     from 'run-sequence';
 import serve    from 'browser-sync';
 import rename   from 'gulp-rename';
 import template from 'gulp-template';
-import fs       from 'fs';
 import yargs    from 'yargs';
-import lodash   from 'lodash';
 
 let reload = () => serve.reload();
 let root = 'client';
