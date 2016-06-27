@@ -27,13 +27,6 @@ let paths = {
   output: root
 };
 
-// use webpack.config.js to build modules
-gulp.task('webpack', () => {
-  return gulp.src(paths.entry)
-    .pipe(webpack(require('./webpack.config')))
-    .pipe(gulp.dest(paths.output));
-});
-
 gulp.task('serve', () => {
   serve({
     port: process.env.PORT || 3000,
@@ -48,5 +41,5 @@ gulp.task('watch', () => {
 });
 
 gulp.task('default', (done) => {
-  sync('webpack', 'serve', 'watch', done);
+  sync('serve', 'watch', done);
 });
