@@ -1,8 +1,8 @@
 import template from './app.html';
 import './app.styl';
 
-const AppComponent = {
+const appComponent = {
   template
 }
 
-export default AppComponent;
+export default appComponent;
