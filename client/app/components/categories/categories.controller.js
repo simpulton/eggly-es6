@@ -11,7 +11,7 @@ class CategoriesController {
   }
 
   onCategorySelected(category) {
-    console.log('CATEGORY SELECTED', category);
+    this.CategoriesModel.setCurrentCategory(category);
   }
 }
 
