@@ -5,7 +5,7 @@ import CategoryItemModule from './category-item/category-item';
 const CategoriesModule = angular.module('categories', [
     CategoryItemModule.name
   ])
-    .component('categories', categoriesComponent)
+  .component('categories', categoriesComponent)
   ;
 
 export default CategoriesModule;
