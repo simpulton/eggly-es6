@@ -5,8 +5,8 @@
 	<li class="category-item"
 		ng-repeat="category in categoriesListCtrl.categories">
 		<category-item
-			name="category.name"
-			selected="categoriesListCtrl.onCategorySelected(categoryName)">
+			category="category"
+			selected="categoriesListCtrl.onCategorySelected(category)">
 		</category-item>
 	</li>
 </ul>

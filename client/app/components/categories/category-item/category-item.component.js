@@ -3,7 +3,7 @@ import './category-item.styl';
 
 let categoryItemComponent = {
   bindings: {
-    name: '<',
+    category: '<',
     selected: '&'
   },
   template,

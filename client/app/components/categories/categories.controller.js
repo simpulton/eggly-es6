@@ -10,8 +10,8 @@ class CategoriesController {
       .then(categories => this.categories = categories);
   }
 
-  onCategorySelected(categoryName) {
-    console.log('CATEGORY SELECTED', categoryName);
+  onCategorySelected(category) {
+    console.log('CATEGORY SELECTED', category);
   }
 }
 
