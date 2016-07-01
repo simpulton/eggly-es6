@@ -9,6 +9,10 @@ class CategoriesController {
     this.CategoriesModel.getCategories()
       .then(categories => this.categories = categories);
   }
+
+  onCategorySelected(categoryName) {
+    console.log('CATEGORY SELECTED', categoryName);
+  }
 }
 
 export default CategoriesController;
