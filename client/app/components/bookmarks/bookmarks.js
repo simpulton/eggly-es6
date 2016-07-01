@@ -1,7 +1,10 @@
 import angular from 'angular';
 import bookmarksComponent from './bookmarks.component';
+import SaveBookmarksModule from './save-bookmark/save-bookmark';
 
-let bookmarksModule = angular.module('bookmarks', [])
+let BookmarksModule = angular.module('bookmarks', [
+    SaveBookmarksModule.name
+  ])
   .component('bookmarks', bookmarksComponent);
 
-export default bookmarksModule;
+export default BookmarksModule;

@@ -2,13 +2,13 @@ import 'bootstrap-css-only';
 import 'normalize.css';
 
 import angular from 'angular';
-import AppComponent from './app.component';
-import Common from './common/common'
-import Components from './components/components'
+import appComponent from './app.component';
+import CommonModule from './common/common'
+import ComponentsModule from './components/components'
 
 angular.module('app', [
-    Common.name,
-    Components.name
+    CommonModule.name,
+    ComponentsModule.name
   ])
-  .component('app', AppComponent)
+  .component('app', appComponent)
 ;
