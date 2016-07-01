@@ -1,5 +1,5 @@
 class SaveController {
-  $onChanges(changesObj) {
+  $onChanges() {
     this.editedBookmark = Object.assign({}, this.bookmark);
   }
 }
