@@ -6,6 +6,6 @@ const categoriesComponent = {
   template,
   controller,
   controllerAs: 'categoriesListCtrl'
-}
+};
 
 export default categoriesComponent;
