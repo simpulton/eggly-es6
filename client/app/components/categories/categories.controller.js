@@ -15,8 +15,8 @@ class CategoriesController {
   }
 
   isCurrentCategory(category) {
-    return this.CategoriesModel.getCurrentCategory()
-      && this.CategoriesModel.getCurrentCategory().id === category.id;
+    return this.CategoriesModel.getCurrentCategory() &&
+      this.CategoriesModel.getCurrentCategory().id === category.id;
   }
 }
 

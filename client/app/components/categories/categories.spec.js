@@ -1,4 +1,4 @@
-import CategoriesModule from './categories'
+import CategoriesModule from './categories';
 import CategoriesController from './categories.controller';
 import CategoriesComponent from './categories.component';
 import CategoriesTemplate from './categories.html';
@@ -14,7 +14,7 @@ describe('Categories', () => {
         getCategories: () => {
           return {
             then: () => {}
-          }
+          };
         }
       });
     });
