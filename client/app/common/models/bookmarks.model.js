@@ -29,7 +29,7 @@ class BookmarksModel {
 
   updateBookmark(bookmark) {
     let index = findIndex(this.bookmarks, (b) => {
-      return b.id == bookmark.id
+      return b.id == bookmark.id;
     });
 
     this.bookmarks[index] = bookmark;

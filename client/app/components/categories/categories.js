@@ -1,5 +1,5 @@
-import angular from 'angular'
-import categoriesComponent from './categories.component'
+import angular from 'angular';
+import categoriesComponent from './categories.component';
 import CategoryItemModule from './category-item/category-item';
 
 const CategoriesModule = angular.module('categories', [

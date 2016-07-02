@@ -30,7 +30,7 @@ class BookmarksController {
       title: '',
       url: '',
       category: this.CategoriesModel.getCurrentCategory().name
-    }
+    };
   }
 
   saveBookmark(bookmark) {
