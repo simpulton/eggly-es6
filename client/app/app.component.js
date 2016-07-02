@@ -3,6 +3,6 @@ import './app.styl';
 
 const AppComponent = {
   template
-}
+};
 
 export default AppComponent;
