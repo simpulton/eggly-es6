@@ -2,7 +2,7 @@ import template from './bookmarks.html';
 import controller from './bookmarks.controller';
 import './bookmarks.styl';
 
-let bookmarksComponent = {
+const bookmarksComponent = {
   template,
   controller,
   controllerAs: 'bookmarksListCtrl'

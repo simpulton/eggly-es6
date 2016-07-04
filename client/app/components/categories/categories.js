@@ -3,8 +3,8 @@ import categoriesComponent from './categories.component';
 import CategoryItemModule from './category-item/category-item';
 
 const CategoriesModule = angular.module('categories', [
-    CategoryItemModule.name
-  ])
+      CategoryItemModule.name
+    ])
     .component('categories', categoriesComponent)
   ;
 

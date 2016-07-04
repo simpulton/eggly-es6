@@ -1,7 +1,7 @@
 import template from './category-item.html';
 import './category-item.styl';
 
-let categoryItemComponent = {
+const categoryItemComponent = {
   bindings: {
     category: '<',
     selected: '&'

@@ -51,7 +51,7 @@ describe('Categories', () => {
   });
 
   describe('Component', () => {
-    let component = CategoriesComponent;
+    const component = CategoriesComponent;
 
     it('includes the intended template',() => {
       expect(component.template).toEqual(CategoriesTemplate);

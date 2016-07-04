@@ -1,7 +1,8 @@
 import template from './save-bookmark.html';
 import controller from './save-bookmark.controller';
+import './save-bookmark.styl';
 
-let saveBookmarkComponent = {
+const saveBookmarkComponent = {
   bindings: {
     bookmark: '<',
     save: '&',

@@ -1,4 +1,4 @@
-import {findIndex, remove} from 'lodash';
+import {uniqueId, findIndex, remove} from 'lodash';
 
 class BookmarksModel {
   constructor($q) {
@@ -23,22 +23,17 @@ class BookmarksModel {
   }
 
   createBookmark(bookmark) {
-    bookmark.id = this.bookmarks.length;
+    bookmark.id = uniqueId();
     this.bookmarks.push(bookmark);
   }
 
   updateBookmark(bookmark) {
-    let index = findIndex(this.bookmarks, (b) => {
-      return b.id == bookmark.id;
-    });
-
+    const index = findIndex(this.bookmarks, b => b.id === bookmark.id);
     this.bookmarks[index] = bookmark;
   }
 
   deleteBookmark(bookmark) {
-    remove(this.bookmarks, (b) => {
-      return b.id == bookmark.id;
-    });
+    remove(this.bookmarks, b => b.id === bookmark.id);
   }
 }
 
