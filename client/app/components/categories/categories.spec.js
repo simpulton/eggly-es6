@@ -9,7 +9,7 @@ describe('Categories', () => {
   beforeEach(() => {
     window.module('categories');
 
-    window.module(($provide) => {
+    window.module($provide => {
       $provide.value('CategoriesModel', {
         getCategories: () => {
           return {
@@ -36,7 +36,7 @@ describe('Categories', () => {
       spyOn(CategoriesModel, 'getCategories').and.callThrough();
 
       component = $componentController('categories', {
-        CategoriesModel: CategoriesModel
+        CategoriesModel
       });
       component.$onInit();
 
