@@ -1,21 +1,22 @@
 'use strict';
 
-import gulp     from 'gulp';
-import path     from 'path';
-import sync     from 'run-sequence';
-import serve    from 'browser-sync';
+import gulp from 'gulp';
+import path from 'path';
+const browserSync = require('browser-sync').create();
+// import serve from 'browser-sync';
+// import sync from 'run-sequence';
 
-let reload = () => serve.reload();
-let root = 'client';
+const reload = () => browserSync.reload();
+const root = 'client';
 
 // helper method for resolving paths
-let resolveToApp = (glob) => {
+const resolveToApp = (glob) => {
   glob = glob || '';
   return path.join(root, 'app', glob); // app/{glob}
 };
 
 // map of all paths
-let paths = {
+const paths = {
   js: resolveToApp('**/*!(.spec.js).js'), // exclude spec files
   styl: resolveToApp('**/*.styl'), // stylesheets
   html: [
@@ -26,19 +27,22 @@ let paths = {
   output: root
 };
 
+gulp.task('reload', (done) => {
+  reload();
+  done();
+});
+
 gulp.task('serve', () => {
-  serve({
+  browserSync.init({
     port: process.env.PORT || 3000,
-    open: false,
+    open: true,
     server: { baseDir: root }
   });
 });
 
-gulp.task('watch', () => {
-  let allPaths = [].concat([paths.js], paths.html, [paths.styl]);
-  gulp.watch(allPaths, [reload]);
+gulp.task('watch', ['serve'], () => {
+  const allPaths = [].concat([paths.js], paths.html, [paths.styl]);
+  gulp.watch(allPaths, ['reload']);
 });
 
-gulp.task('default', (done) => {
-  sync('serve', 'watch', done);
-});
+gulp.task('default', ['watch']);
