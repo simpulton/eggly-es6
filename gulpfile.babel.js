@@ -2,9 +2,8 @@
 
 import gulp from 'gulp';
 import path from 'path';
+import webpack from 'webpack-stream';
 const browserSync = require('browser-sync').create();
-// import serve from 'browser-sync';
-// import sync from 'run-sequence';
 
 const reload = () => browserSync.reload();
 const root = 'client';
@@ -27,7 +26,13 @@ const paths = {
   output: root
 };
 
-gulp.task('reload', (done) => {
+gulp.task('webpack', () => {
+  return gulp.src(paths.entry)
+    .pipe(webpack(require('./webpack.config')))
+    .pipe(gulp.dest(paths.output));
+});
+
+gulp.task('reload', ['webpack'], (done) => {
   reload();
   done();
 });
