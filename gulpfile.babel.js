@@ -3,9 +3,9 @@
 import gulp     from 'gulp';
 import path     from 'path';
 import sync     from 'run-sequence';
-import serve    from 'browser-sync';
+import browserSync    from 'browser-sync';
 
-let reload = () => serve.reload();
+let reload = () => browserSync.reload();
 let root = 'client';
 
 // helper method for resolving paths
@@ -26,19 +26,22 @@ let paths = {
   output: root
 };
 
+gulp.task('reload', done => {
+  reload();
+  done()
+});
+
 gulp.task('serve', () => {
-  serve({
+  browserSync({
     port: process.env.PORT || 3000,
     open: false,
     server: { baseDir: root }
   });
 });
 
-gulp.task('watch', () => {
+gulp.task('watch', ['serve'], () => {
   let allPaths = [].concat([paths.js], paths.html, [paths.styl]);
-  gulp.watch(allPaths, [reload]);
+  gulp.watch(allPaths, ['reload']);
 });
 
-gulp.task('default', (done) => {
-  sync('serve', 'watch', done);
-});
+gulp.task('default', ['watch']);
