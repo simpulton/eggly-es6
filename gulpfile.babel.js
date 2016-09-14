@@ -4,9 +4,9 @@ import gulp     from 'gulp';
 import webpack  from 'webpack-stream';
 import path     from 'path';
 import sync     from 'run-sequence';
-import serve    from 'browser-sync';
+import browserSync    from 'browser-sync';
 
-let reload = () => serve.reload();
+let reload = () => browserSync.reload();
 let root = 'client';
 
 // helper method for resolving paths
@@ -34,19 +34,22 @@ gulp.task('webpack', () => {
     .pipe(gulp.dest(paths.output));
 });
 
-gulp.task('serve', () => {
-  serve({
+gulp.task('reload', ['webpack'], (done) => {
+  reload();
+  done();
+});
+
+gulp.task('serve', ['webpack'], () => {
+  browserSync({
     port: process.env.PORT || 3000,
     open: false,
     server: { baseDir: root }
   });
 });
 
-gulp.task('watch', () => {
+gulp.task('watch', ['serve'], () => {
   let allPaths = [].concat([paths.js], paths.html, [paths.styl]);
-  gulp.watch(allPaths, ['webpack', reload]);
+  gulp.watch(allPaths, ['reload']);
 });
 
-gulp.task('default', (done) => {
-  sync('webpack', 'serve', 'watch', done);
-});
+gulp.task('default', ['watch']);
