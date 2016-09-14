@@ -3,7 +3,6 @@
 import gulp     from 'gulp';
 import webpack  from 'webpack-stream';
 import path     from 'path';
-import sync     from 'run-sequence';
 import browserSync    from 'browser-sync';
 
 let reload = () => browserSync.reload();
