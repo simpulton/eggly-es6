@@ -35,7 +35,7 @@ gulp.task('reload', ['webpack'], (done) => {
   done();
 });
 
-gulp.task('serve', () => {
+gulp.task('serve', ['webpack'], () => {
   browserSync({
     port: process.env.PORT || 3000,
     open: false,
