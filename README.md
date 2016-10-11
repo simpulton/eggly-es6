@@ -9,7 +9,7 @@ You will need `node` (`brew install node` or https://nodejs.org/en/) and `npm` (
 git clone https://github.com/simpulton/eggly-es6.git
 cd eggly-es6
 npm i
-gulp
+npm start # runs local gulp
 ```
 
 ## Generating Components
