@@ -10,5 +10,4 @@ angular.module('app', [
     CommonModule.name,
     ComponentsModule.name
   ])
-  .component('app', appComponent)
-;
+  .component('app', appComponent);
