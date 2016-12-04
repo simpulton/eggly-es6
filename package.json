@@ -2,7 +2,7 @@
   "name": "eggly-es6",
   "version": "0.0.1",
   "description": "A simple bookmark manager built on ES6 using AngularJS 1.x, Gulp, and Webpack.",
-  "main": "index.js",
+  "main": "app.js",
   "dependencies": {
     "angular": "1.5.7",
     "angular-animate": "1.5.7",
